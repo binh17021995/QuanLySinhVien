@@ -2,86 +2,93 @@ package main;
 
 import java.util.Scanner;
 
-import quanlysinhvien.QuanLySinhVien;
-import sinhvien.SinhVien;
+import student.Student;
+import studentmanager.StudentManager;
 
 public class Main {
 	public static void main(String[] args) {
-		
-		QuanLySinhVien quanLySinhVien = new QuanLySinhVien();
+		StudentManager studentManager = new StudentManager();
 		int id;
 		String choose = null;
-        boolean exit = false;
-        Scanner scanner = new Scanner(System.in);
-		 showMenu();
-	        while (true) {
-	            choose = scanner.nextLine();
-	            switch (choose) {
-	            case "1":
-	                quanLySinhVien.addStudent();
-	                break;
+		boolean exit = false;
+		Scanner scanner = new Scanner(System.in);
+		showMenu();
+		while (true) {
+			choose = scanner.nextLine();
+			switch (choose) {
+			case "1":
+				studentManager.addStudent();
+				break;
+
+			case "2":
+				System.out.println("Iput ID of student want to edit: ");
+				id = scanner.nextInt();
+				scanner.nextLine();
+				studentManager.editStudent(id);
+				break;
+
+			case "3":
+				System.out.println("Iput ID of student want to delete: ");
+				id = scanner.nextInt();
+				scanner.nextLine();
+				studentManager.deleteStudent(id);
+				break;
+
+			case "4":
+				studentManager.sortByName();
+				break;
+
+			case "5":
+				studentManager.sortByYear();
+				break;
+
+			case "6":
+				studentManager.sortByNumberPhone();
+				break;
+
+			case "7":
+				studentManager.findStudent();
+				break;
+
+			case "8":
+				studentManager.filterCollegeOrUniversity();
+				break;
 				
-				  case "2": 
-					  System.out.println("Nhập id sinh viên muốn sửa: ");
-					  id = scanner.nextInt();
-					  scanner.nextLine();
-					  quanLySinhVien.editSV(id);
-				  break; 
-				  case "3": 
-					  System.out.println("Nhập id sinh viên muốn xoá: ");
-					  id = scanner.nextInt();
-					  scanner.nextLine();
-					  
-					  quanLySinhVien.xoaSV(id);
-				  break; 
-				  case "4":
-					  quanLySinhVien.sortByName();
-				 
-				  break; 
-				  case "5":
-					  quanLySinhVien.sortByYear();
-				  
-				  break; 
-				  case "6": 
-					  quanLySinhVien.sortByNumberPhone();
-				  break;
-				 case "7": quanLySinhVien.findStudent();
-				  break;
-				  
-				 case "8": quanLySinhVien.hienThiDSSV();
-				  break;
-				 
-	            case "0":
-	                System.out.println("Đã thoát!");
-	                exit = true;
-	                break;
-	            default:
-	                System.out.println("Chọn giá trị không hợp lệ:");
-	                break;
-	            }
-	            if (exit) {
-	                break;
-	            }
-	          
-	            showMenu();
-	        }
-	    }
-	 
-	   
-	
-public static void showMenu() {
-    System.out.println("-----------Lựa chọn theo bảng dưới------------");
-    System.out.println("1. Thêm sinh viên.");
-    System.out.println("2. Sửa thông tin Sinh viên bằng id.");
-    System.out.println("3. Xoá thông tin Sinh viên bằng id.");
-    System.out.println("4. Sắp xếp sinh viên theo tên.");
-    System.out.println("5. SSắp xếp sinh viên theo năm sinh.");
-    System.out.println("6. Sắp xếp sinh viên theo số điện thoại.");
-    System.out.println("7. Tìm kiếm học sinh.");
-    System.out.println("8. Hiển thị danh sách sinh viên.");
-    System.out.println("0. Thoát.");
-    System.out.println("---------------------------");
-    System.out.print("Mời lựa chọn: ");
-}
+			case "9":
+				studentManager.showList();
+				break;
+
+			case "0":
+				System.out.println("Exited!");
+				exit = true;
+				break;
+
+			default:
+				System.out.println("Invalid! choose id:");
+				break;
+
+			}
+			if (exit) {
+				break;
+			}
+			showMenu();
+		}
+	}
+
+	public static void showMenu() {
+		System.out.println("-----------Menu------------");
+		System.out.println("1. Add student.");
+		System.out.println("2. Edit student by id.");
+		System.out.println("3. Delete student by id.");
+		System.out.println("4. Sort student by name.");
+		System.out.println("5. Sort student by year.");
+		System.out.println("6. Sort student by number phone.");
+		System.out.println("7. Find student.");
+		System.out.println("8. Filter student College/University.");
+		System.out.println("9. Show list student.");
+		System.out.println("0. Exit.");
+		System.out.println("---------------------------");
+		System.out.print("Press key: ");
+	}
 
 }
